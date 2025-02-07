@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="checkbox" onchange="handlerC(event)">
+</body>
+
+</html>
+<script>
+    // flag
+    let processing = false;
+
+    // #case A: 잘못된 처리
+    function handlerA($evt) {
+        let checked = $evt.target.checked;
+
+        if (processing) return;
+        processing = true;
+
+        // 로직처리...
+        console.log('로직처리... 한번만 찍혀야 정상...');
+
+        processing = false;
+    }
+
+    // #case B: setTimeout 처리
+    function handlerB($evt) {
+        let checked = $evt.target.checked;
+
+        if (processing) {
+            $evt.target.checked = !$evt.target.checked;
+            return;
+        }
+        processing = true;
+
+        // 로직처리...
+        console.log('로직처리... 한번만 찍혀야 정상...');
+
+        setTimeout(() => {
+            processing = false;
+        }, 500);
+    }
+
+    // #case C: await 처리
+    async function handlerC($evt) {
+        if (processing) {
+            $evt.target.checked = !$evt.target.checked;
+            return;
+        }
+        processing = true;
+
+        // 로직처리...
+        console.log('로직처리... 한번만 찍혀야 정상...');
+
+        await delay(500);
+        processing = false;
+    }
+
+    async function delay(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    
+
+</script>

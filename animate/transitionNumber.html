@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="digit">
+        <div id="stripe">0123456789</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+<style>
+    #digit {
+        width: .5em;
+        overflow: hidden;
+        font: 32px monospace;
+        cursor: pointer;
+    }
+
+    #stripe {
+        display: inline-block;
+    }
+
+    #stripe.animate {
+        transform: translate(-90%);
+        transition-property: transform;
+        transition-duration: 2s;
+        transition-timing-function: linear;
+    }
+</style>
+<script>
+    stripe.onclick = function () {
+        this.classList.add('animate');
+    }
+</script>

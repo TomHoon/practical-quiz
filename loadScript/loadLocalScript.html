@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    const loadScript = (src, cb) => {
+        return new Promise(function(res, rej) {
+            let script = document.createElement('script');
+            script.src = "./loadScript.js";
+            script.onload = () => { res('success'); };
+            script.onerror = () => { rej('fail'); };
+            
+            document.head.append(script);
+        });
+
+    }
+
+    const ready = async () => {
+        const res = await loadScript('./loadScript.js');
+        f1();
+    }
+
+    document.addEventListener('DOMContentLoaded', ready);
+
+</script>

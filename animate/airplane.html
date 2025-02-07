@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
+</body>
+</html>
+
+<script>
+    let success = false;
+
+    flyjet.onclick = function() {
+
+        // !: transition all이기 때문에 해당 이벤트 변하는 프로퍼티 개수 대로 실행됨
+        flyjet.addEventListener('transitionend', function() {
+            if (success) return;
+            alert('Done!');
+            success = true;
+
+        });
+
+        this.classList.add('growing');
+    }
+
+
+
+</script>
+
+<style>
+    #flyjet {
+        width: 40px;
+        height: 24px;
+        transition: all 3s;
+    }
+    #flyjet.growing {
+        width: 400px;
+        height: 240px;
+    }
+</style>
+
